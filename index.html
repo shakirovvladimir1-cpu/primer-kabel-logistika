@@ -38,8 +38,20 @@ body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--t
 .wrap{max-width:760px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-left))}
 @media (max-width:420px){.wrap{padding:0 16px}}
 
-/* hero owns the first screen; the fiber bundle sits on its floor */
-.hero{min-height:100svh;display:flex;flex-direction:column;padding:28px 0 36px}
+/* hero owns the first screen: full-bleed illustration, always dark */
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;background:#0F1714;
+  --ink:#EEF4F1; --muted:#B4C6BF; --f1:#4A8FE6; --f8:#4C5A55; --f6:#FFFFFF;
+  color:var(--ink);
+}
+.hero-art{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:72% 30%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to top,#0F1714 0%,rgba(15,23,20,.92) 22%,rgba(15,23,20,.55) 42%,rgba(15,23,20,0) 62%)}
+.hero-in{min-height:100svh;display:flex;flex-direction:column;padding-top:28px;padding-bottom:36px}
+@media (min-width:900px){
+  .hero::after{background:linear-gradient(to top,#0F1714 0%,rgba(15,23,20,.6) 18%,rgba(15,23,20,0) 40%)}
+  .hero-art{object-position:center}
+}
 .maker{margin:0;font-size:15px;color:var(--muted)}
 .maker b{color:var(--ink);font-weight:600}
 .hero-text{margin:auto 0 44px}
@@ -112,8 +124,9 @@ footer{padding:36px 0 calc(44px + env(safe-area-inset-bottom));color:var(--muted
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="hero">
+<header class="hero">
+  <img class="hero-art" src="hero.jpg" width="1672" height="941" alt="" fetchpriority="high">
+  <div class="wrap hero-in">
     <p class="maker"><b>Пример-Кабель</b>, завод оптического кабеля</p>
     <div class="hero-text">
       <h1>Логистика</h1>
@@ -121,8 +134,10 @@ footer{padding:36px 0 calc(44px + env(safe-area-inset-bottom));color:var(--muted
     </div>
     <div class="bundle" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <p class="legend">12 волокон, 12 цветов: стандартная маркировка оптического кабеля.</p>
-  </header>
+  </div>
+</header>
 
+<div class="wrap">
   <main>
     <section class="block" aria-labelledby="what">
       <h2 id="what">Чем занимаемся</h2>

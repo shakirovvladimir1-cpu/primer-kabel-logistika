@@ -19,6 +19,7 @@
   --soft:#C9D8D4;
   --jacket:#F4C20D;
   --jacket-ink:#16221E;
+  --pink:#C9356F;
   --f1:#1F6FD1; --f2:#F28C1B; --f3:#2E9E4A; --f4:#8B5A2B;
   --f5:#7A8592; --f6:#FFFFFF; --f7:#D7263D; --f8:#16221E;
   --f9:#F4C20D; --f10:#7B3FA0; --f11:#E87FA8; --f12:#2BB7C4;
@@ -28,12 +29,12 @@
 @media (prefers-color-scheme:dark){
   :root{
     --paper:#0F1714; --surface:#17221E; --ink:#E6EFEC; --muted:#93A69F; --soft:#24332D;
-    --f1:#4A8FE6; --f8:#4C5A55;
+    --f1:#4A8FE6; --f8:#4C5A55; --pink:#F08BB4;
   }
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;overflow-x:clip;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--text)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--text)}
 .wrap{max-width:760px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-left))}
 @media (max-width:420px){.wrap{padding:0 16px}}
 
@@ -46,7 +47,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(40px,12.4vw,108px)
 .lead{margin:0;max-width:28ch;font-size:clamp(18px,4.8vw,22px);line-height:1.45;color:var(--muted)}
 
 /* signature: 12-fiber colour code (TIA-598) */
-.bundle{display:grid;gap:4px;width:100vw;margin-left:calc(50% - 50vw)}
+.bundle{display:grid;gap:4px;width:calc(50vw + 50%);margin-left:calc(50% - 50vw)}
 .bundle i{display:block;height:5px;border-radius:0 3px 3px 0}
 .bundle i:nth-child(1){background:var(--f1);width:97%}
 .bundle i:nth-child(2){background:var(--f2);width:89%}
@@ -81,6 +82,9 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,6.4vw,34px);l
 .route li::before{content:"";position:absolute;left:0;top:50%;width:26px;height:26px;transform:translateY(-50%);border-radius:50%;background:var(--paper);box-shadow:inset 0 0 0 4px var(--f1)}
 .route li:last-child::before{background:var(--f1)}
 .route span{font-family:var(--display);font-weight:500;font-size:clamp(28px,8vw,44px);letter-spacing:-.02em;line-height:1.1}
+.route li.big{min-height:110px;margin:22px 0}
+.route li.big span{color:var(--pink);font-size:min(88px,calc((100vw - 96px) / 7.4))}
+.route li.big::before{box-shadow:inset 0 0 0 4px var(--pink)}
 
 /* how to apply */
 .steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
@@ -124,7 +128,7 @@ footer{padding:36px 0 calc(44px + env(safe-area-inset-bottom));color:var(--muted
       <h2 id="what">Чем занимаемся</h2>
       <ol class="route">
         <li><span>Производим</span></li>
-        <li><span>Доставляем</span></li>
+        <li class="big"><span>Доставляем</span></li>
         <li><span>Разгружаем</span></li>
       </ol>
     </section>
